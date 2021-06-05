@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">KotlinDemo</string>
+    <string name="button">Button</string>
+    <string name="title_activity_home">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="email_id">Email Id</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="share_using">Share Using</string>
+    <string name="email_exists">This email id is already registered with us. Please try singing in with this email id or choose a different email id.</string>
+    <string name="registration_success">You are successfully registered with us. Please click on the email verification link sent to your email account, then continue with login.</string>
+    <string name="sign_in">Sign In</string>
+    <string name="email_not_verified">You have not verified your email. Please go to your email account and click on the verification link sent. If you have not received the verification mail yet please click on the resend now button.</string>
+    <string name="resend_now">Resend Now</string>
+    <string name="verification_email_sent">A verification email is being sent your email account. Please click on the email verification link to verify your email id, then continue with login.</string>
+    <string name="password_link_sent">A link to reset your password is being sent your email account. Please click on the link to change your password.</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="please_enter_your_registered_email_id_to_send_password_reset_link">Please enter your registered email id to send password reset link</string>
+    <string name="email_not_registered">This email id is not registered with us. Please try again with a different email id or register using this email id.</string>
+    <string name="inavalid_password">Invalid password</string>
+    <string name="enter_email_id">Enter email id</string>
+    <string name="enter_valid_email_id">Enter valid email id</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="server_error">We encountered some glitch. Please try again.</string>
+    <string name="full_name">Full Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="title_favourite">Favourite</string>
+</resources>

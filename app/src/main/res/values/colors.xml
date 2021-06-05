@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#288CDD</color>
+    <color name="colorPrimaryDark">#1A508D</color>
+    <color name="colorAccent">#E23323</color>
+
+
+    <color name="white">#ffffff</color>
+    <color name="textColorHeader">#000000</color>
+    <color name="textColorSubHeader">#8A8A8A</color>
+    <color name="textColor">#4d4d4d</color>
+
+    <color name="dividerColor">#eaeaea</color>
+
+    <color name="tintColor">#000000</color>
+
+    <color name="editTextBack">#B7CDB3</color>
+</resources>
