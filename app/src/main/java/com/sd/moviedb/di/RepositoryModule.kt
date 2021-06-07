@@ -1,19 +1,21 @@
 package com.sd.moviedb.di
 
-import com.sd.moviedb.data.ApiService
-import com.sd.moviedb.data.dao.MovieDao
-import com.sd.moviedb.data.datasource.MovieDataSource
+import com.sd.moviedb.data.network.ApiService
+import com.sd.moviedb.data.database.AppDatabase
 import com.sd.moviedb.data.repositories.MovieRepository
 import org.koin.dsl.module
 
 var repositoryModule = module {
 
 
-    fun provideMovieDataSource(api: ApiService) = MovieDataSource(api)
+    // provideMovieDataSource(api: ApiService) = MovieDataSource(api)
 
-    fun provideMovieRepository(movieDataSource: MovieDataSource, movieDao: MovieDao) =
-        MovieRepository(movieDataSource, movieDao)
+    //fun provideMoviePagingDataSource(api: ApiService,appDatabase: AppDatabase) = MoviePagingSource(api,appDatabase)
 
-    single { provideMovieDataSource(get()) }
+    fun provideMovieRepository(apiService: ApiService, appDatabase: AppDatabase) =
+        MovieRepository(apiService, appDatabase)
+
+   // single { provideMovieDataSource(get()) }
+   // single { provideMoviePagingDataSource(get(),get()) }
     single { provideMovieRepository(get(), get()) }
 }

@@ -2,6 +2,7 @@ package com.sd.moviedb.model
 
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity
@@ -10,10 +11,10 @@ data class Movies(
     val adult: Boolean?,
     @SerializedName("backdrop_path")
     val backdropPath: String?,
-    @SerializedName("genre_ids")
-    val genreIds: List<Int>?,
+    // @SerializedName("genre_ids")
+    //val genreIds: List<Int>?,
     @SerializedName("id")
-    val id: Int?,
+    val id: Int,
     @SerializedName("original_language")
     val originalLanguage: String?,
     @SerializedName("original_title")
@@ -26,8 +27,9 @@ data class Movies(
     val posterPath: String?,
     @SerializedName("release_date")
     val releaseDate: String?,
+    @PrimaryKey
     @SerializedName("title")
-    val title: String?,
+    val title: String,
     @SerializedName("video")
     val video: Boolean?,
     @SerializedName("vote_average")

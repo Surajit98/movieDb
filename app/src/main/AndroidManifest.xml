@@ -15,18 +15,13 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="com.sd.moviedb.ui.HomeActivity"
-            android:label="@string/title_activity_home"></activity>
-        <activity android:name="com.sd.moviedb.ui.MainActivity">
+            android:name="com.sd.moviedb.ui.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.sd.moviedb.ui.login.LoginActivity" />
-        <activity android:name="com.sd.moviedb.ui.registration.RegistrationActivity" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

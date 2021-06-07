@@ -45,37 +45,4 @@ object AlertHelper {
 
     }
 
-    fun showAlertEmail(context: Context, callback: AlertCallback): Dialog {
-        val dialog = Dialog(context, R.style.DialogTheme)
-        val binding: AlertDialogInputEmailBinding = DataBindingUtil.inflate(
-            (context as Activity).layoutInflater,
-            R.layout.alert_dialog_input_email,
-            null,
-            false
-        )
-        dialog.setContentView(binding.root)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window?.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-        dialog.window?.setDimAmount(.8f)
-        val lp = WindowManager.LayoutParams()
-        lp.copyFrom(dialog.window?.attributes)
-        lp.width = (context.resources.displayMetrics.widthPixels * 0.95).roundToInt()
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT
-        dialog.window?.attributes = lp
-        binding.btnOk.setOnClickListener {
-            if (TextUtils.isEmpty(binding.etEmail.text.toString().trim())) {
-                binding.emailLayout.error = context.getString(R.string.enter_email_id)
-                return@setOnClickListener
-            }
-            if (!binding.etEmail.text.toString().trim().isValidEmail()) {
-                binding.emailLayout.error = context.getString(R.string.enter_valid_email_id)
-                return@setOnClickListener
-            }
-            dialog.dismiss()
-            callback.data(binding.etEmail.text.toString().trim())
-        }
-        dialog.show()
-        return dialog
-
-    }
 }

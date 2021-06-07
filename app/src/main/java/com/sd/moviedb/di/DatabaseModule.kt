@@ -3,7 +3,8 @@ package com.sd.moviedb.di
 import android.content.Context
 import androidx.room.Room
 import com.sd.moviedb.constants.DatabaseConstants
-import com.sd.moviedb.data.dao.MovieDao
+import com.sd.moviedb.data.database.dao.MovieDao
+import com.sd.moviedb.data.database.dao.RemoteKeysDao
 import com.sd.moviedb.data.database.AppDatabase
 import org.koin.dsl.module
 
@@ -19,12 +20,18 @@ var dataBaseModule = module {
             .build()
     }
 
-    fun provideUserDao(appDatabase: AppDatabase): MovieDao {
-        return appDatabase.getUserDao()
+    fun provideMovieDao(appDatabase: AppDatabase): MovieDao {
+        return appDatabase.getMovieDao()
     }
 
+    fun provideKeysDao(appDatabase: AppDatabase): RemoteKeysDao {
+        return appDatabase.getRemoteKeysDao()
+    }
+
+
     single { provideDatabase(get()) }
-    single { provideUserDao(get()) }
+    single { provideMovieDao(get()) }
+    single { provideKeysDao(get()) }
 
 
 }

@@ -7,10 +7,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.sd.moviedb.constants.DBConstants
 import com.bumptech.glide.Glide
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 import java.util.*
 import kotlin.math.ln
 import kotlin.math.pow
@@ -36,7 +33,7 @@ object CustomBindingAdapter {
     @JvmStatic
     fun setImg(img: ImageView, path: String?) {
         path?.let {
-            Glide.with(img).load(Firebase.storage.getReference("${DBConstants.IMAGE_PATH}/$it.png"))
+            Glide.with(img).load("path")
                 .into(img)
         }
 

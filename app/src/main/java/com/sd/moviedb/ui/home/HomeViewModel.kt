@@ -1,13 +1,17 @@
 package com.sd.moviedb.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.sd.moviedb.data.repositories.MovieRepository
+import com.sd.moviedb.model.Movies
+import kotlinx.coroutines.flow.Flow
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    fun fetchMovies(): Flow<PagingData<Movies>> {
+        return repository.getMoviesFlowDb().cachedIn(viewModelScope)
     }
-    val text: LiveData<String> = _text
+
 }
