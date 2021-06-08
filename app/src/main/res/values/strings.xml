@@ -29,4 +29,7 @@
     <string name="title_favourite">Favourite</string>
     <string name="retry">Retry</string>
     <string name="home">Home</string>
+    <string name="movie_poster">movie_poster</string>
+    <string name="realesed_on">Released on :</string>
+    <string name="it_s_empty_here">It\'s empty here!</string>
 </resources>

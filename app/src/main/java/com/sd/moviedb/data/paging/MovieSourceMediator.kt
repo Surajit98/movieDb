@@ -8,8 +8,8 @@ import androidx.room.withTransaction
 import com.sd.moviedb.constants.AppConstants.FIRST_PAGE
 import com.sd.moviedb.constants.AppConstants.LANGUAGE
 import com.sd.moviedb.constants.AppConstants.SORT_BY
-import com.sd.moviedb.data.network.ApiService
 import com.sd.moviedb.data.database.AppDatabase
+import com.sd.moviedb.data.network.ApiService
 import com.sd.moviedb.model.Movies
 import com.sd.moviedb.model.RemoteKeys
 import retrofit2.HttpException
@@ -18,7 +18,7 @@ import java.io.InvalidObjectException
 
 
 @OptIn(ExperimentalPagingApi::class)
-class MoviePagingSource(
+class MovieSourceMediator(
     private val apiService: ApiService,
     private val appDatabase: AppDatabase
 ) : RemoteMediator<Int, Movies>() {
@@ -46,7 +46,7 @@ class MoviePagingSource(
                 val prevKey = if (page == FIRST_PAGE) null else page - 1
                 val nextKey = if (isEndOfList) null else page + 1
                 val keys = response.body()?.results?.map {
-                    RemoteKeys(id = it.title!!, prevKey = prevKey, nextKey = nextKey)
+                    RemoteKeys(id = it.title, prevKey = prevKey, nextKey = nextKey)
                 }
                 if (keys != null) {
                     appDatabase.getRemoteKeysDao().insertAll(keys)

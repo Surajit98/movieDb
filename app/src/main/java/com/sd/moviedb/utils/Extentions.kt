@@ -17,11 +17,20 @@ inline fun Any.log(message: () -> String) {
     }
 }
 
-fun Date?.format(): String {
-    return if (this == null) "" else SimpleDateFormat(
-        "dd MMM, yyyy hh:mm a",
-        Locale.getDefault()
-    ).format(this)
+fun String?.formatDate(): String {
+    return if (this.isNullOrEmpty()) ""
+    else {
+        val date = SimpleDateFormat(
+            "yyyy-mm-dd",
+            Locale.getDefault()
+        ).parse(this)
+        date?.let {
+            SimpleDateFormat("dd MMM, yyyy", Locale.getDefault()).format(
+                it
+            )
+        } ?: "N/A"
+
+    }
 }
 
 fun Activity.shareText(text: String) {

@@ -6,5 +6,7 @@ object AppConstants {
     const val DEFAULT_PAGE_SIZE=20
     const val LANGUAGE="en-US"
     const val SORT_BY="popularity.desc"
+    const val IMAGE_PATH="https://image.tmdb.org/t/p/original"
+
 
 }

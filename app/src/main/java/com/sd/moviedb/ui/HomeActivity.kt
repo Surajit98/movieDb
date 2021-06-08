@@ -1,5 +1,6 @@
 package com.sd.moviedb.ui
 
+import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -11,13 +12,18 @@ class HomeActivity : BaseActivity() {
 
     private lateinit var binding: ActivityHomeBinding
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        transparentStatusBar()
+    }
+
     override fun setBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
     }
 
     override fun init() {
         val navController = findNavController(R.id.nav_host_fragment)
-        navController.addOnDestinationChangedListener { _, destination, _ ->
+       /* navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.navigation_home -> {
                     binding.title.text = getString(R.string.title_home)
@@ -26,7 +32,7 @@ class HomeActivity : BaseActivity() {
                     binding.title.text = getString(R.string.title_favourite)
                 }
             }
-        }
+        }*/
         binding.navView.setupWithNavController(findNavController(R.id.nav_host_fragment))
     }
 }

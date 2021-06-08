@@ -4,6 +4,7 @@ package com.sd.moviedb.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import com.sd.moviedb.constants.AppConstants.IMAGE_PATH
 
 @Entity
 data class Movies(
@@ -24,7 +25,7 @@ data class Movies(
     @SerializedName("popularity")
     val popularity: Double?,
     @SerializedName("poster_path")
-    val posterPath: String?,
+    var posterPath: String?,
     @SerializedName("release_date")
     val releaseDate: String?,
     @PrimaryKey
@@ -35,5 +36,9 @@ data class Movies(
     @SerializedName("vote_average")
     val voteAverage: Double?,
     @SerializedName("vote_count")
-    val voteCount: Int?
-)
+    val voteCount: Int?,
+    var favourite: Boolean = false
+) {
+    fun getFullPosterPath() =
+        if (posterPath.isNullOrBlank()) null else IMAGE_PATH + posterPath
+}

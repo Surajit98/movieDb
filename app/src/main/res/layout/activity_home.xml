@@ -5,13 +5,14 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/_25sdp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="?colorPrimary"
+            android:background="@android:color/transparent"
             app:contentInsetStart="0dp"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -19,9 +20,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
+                <ImageView
+                    android:src="@mipmap/text_logo"
                     android:id="@+id/title"
-                    style="@style/textTitleHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"

@@ -8,9 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import java.util.*
-import kotlin.math.ln
-import kotlin.math.pow
+import com.sd.moviedb.R
 
 
 object CustomBindingAdapter {
@@ -33,30 +31,17 @@ object CustomBindingAdapter {
     @JvmStatic
     fun setImg(img: ImageView, path: String?) {
         path?.let {
-            Glide.with(img).load("path")
-                .into(img)
-        }
+            Glide.with(img).load(path).into(img)
+        } ?: Glide.with(img).load(path).into(img)
 
 
     }
 
     @BindingAdapter("date")
     @JvmStatic
-    fun setDate(txt: TextView, date: Date) {
-        txt.text = date.format()
-    }
-
-    @BindingAdapter("countToString")
-    @JvmStatic
-    fun countToString(txt: TextView, count: Int) {
-        if (count < 1000) {
-            txt.text = count.toString()
-        } else {
-            val exp = (ln(count.toDouble()) / ln(1000.0)).toInt()
-            txt.text =
-                String.format("%.1f %c", count / 1000.0.pow(exp.toDouble()), "kMGTPE"[exp - 1])
-        }
-
+    fun setDate(txt: TextView, date: String?) {
+        val text = "${txt.context.getString(R.string.realesed_on)} ${date.formatDate()}"
+        txt.text = text
     }
 
 

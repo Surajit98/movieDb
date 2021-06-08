@@ -1,13 +1,17 @@
 package com.sd.moviedb.ui.favourites
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.sd.moviedb.data.repositories.MovieRepository
+import com.sd.moviedb.model.Movies
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class FavouritesViewModel : ViewModel() {
+class FavouritesViewModel(private val repository: MovieRepository) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+    fun getMovies()=repository.getAllFav()
+
+    fun update(movie: Movies){
+        viewModelScope.launch(Dispatchers.IO) { repository.updateMovie(movie) }
     }
-    val text: LiveData<String> = _text
 }

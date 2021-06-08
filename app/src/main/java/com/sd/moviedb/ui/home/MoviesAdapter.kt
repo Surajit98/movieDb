@@ -7,14 +7,18 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sd.moviedb.R
+import com.sd.moviedb.callback.MovieItemClickListener
 import com.sd.moviedb.databinding.ListItemMoviesBinding
 import com.sd.moviedb.model.Movies
 
-class MoviesAdapter() : PagingDataAdapter<Movies, MoviesAdapter.ViewHolder>(DiffCallback()) {
+class MoviesAdapter(private val mListener:MovieItemClickListener) : PagingDataAdapter<Movies, MoviesAdapter.ViewHolder>(DiffCallback()) {
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.movie = getItem(position)
+        holder.binding.chkLike.setOnClickListener {
+            getItem(position)?.let { movie -> mListener.toggleLike(movie) }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

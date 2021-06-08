@@ -1,13 +1,18 @@
 package com.sd.moviedb.di
 
 import android.app.Application
+import android.content.Context
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.sd.moviedb.BuildConfig
 import com.sd.moviedb.data.network.ApiService
-import okhttp3.*
+import com.sd.moviedb.utils.NetworkConnectionInterceptor
+import okhttp3.Cache
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -37,10 +42,12 @@ val networkModule = module {
     fun provideOkHttpClient(
         loggingInterceptor: HttpLoggingInterceptor,
         headerAuthorizationInterceptor: Interceptor,
+        networkConnectionInterceptor: NetworkConnectionInterceptor,
         cache: Cache?
     ): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
         httpClient.addInterceptor(headerAuthorizationInterceptor)
+        httpClient.addInterceptor(networkConnectionInterceptor)
         httpClient.connectTimeout(
             TIMEOUT_IN_SECS.toLong(),
             TimeUnit.SECONDS
@@ -61,14 +68,18 @@ val networkModule = module {
     }
 
 
-
-     fun provideHeaderAuthorizationInterceptor(): Interceptor {
+    fun provideHeaderAuthorizationInterceptor(): Interceptor {
         return Interceptor { chain ->
             var request = chain.request()
             val url = request.url.newBuilder().addQueryParameter(PARAM_API_KEY, API_KEY).build()
             request = request.newBuilder().url(url).build()
             chain.proceed(request)
         }
+    }
+
+    fun provideNetworkInterceptor(context: Context): Interceptor {
+        return NetworkConnectionInterceptor(context)
+
     }
 
     fun provideGson(): Gson? {
@@ -92,8 +103,9 @@ val networkModule = module {
     single { provideGson() }
     single { provideHeaderAuthorizationInterceptor() }
     single { provideLoggingInterceptor() }
-    single { provideOkHttpClient(get(), get(), get()) }
+    single { provideOkHttpClient(get(), get(), get(named("internet")), get()) }
     single { provideApiService(get(), get()) }
+    single(named("internet")) { provideNetworkInterceptor(get()) }
 
 }
 
